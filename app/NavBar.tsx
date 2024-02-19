@@ -69,7 +69,7 @@ const AuthStatus = () => {
 
   if (status === "unauthenticated")
     return (
-      <Link className="nav-link" href="api/auth/signin">
+      <Link className="nav-link" href="/api/auth/signin">
         Log in
       </Link>
     );
@@ -92,7 +92,7 @@ const AuthStatus = () => {
             <DropdownMenu.Label>{session!.user!.email}</DropdownMenu.Label>
           </Text>
           <DropdownMenu.Item>
-            <Link href="api/auth/signout">Log out</Link>
+            <Link href="/api/auth/signout">Log out</Link>
           </DropdownMenu.Item>
         </DropdownMenu.Content>
       </DropdownMenu.Root>
