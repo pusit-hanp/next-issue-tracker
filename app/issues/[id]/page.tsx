@@ -7,6 +7,8 @@ import DeleteIssueButton from "./DeleteIssueButton";
 import { getServerSession } from "next-auth";
 import authOptions from "@/app/auth/authOptions";
 import AssigneeSelect from "./AssigneeSelect";
+import { title } from "process";
+import { describe } from "node:test";
 
 interface Props {
   params: { id: string };
@@ -40,5 +42,15 @@ const IssueDetailPage = async ({ params }: Props) => {
     </Grid>
   );
 };
+
+export async function generateMetadata({ params }: Props) {
+  const issue = await prisma.issue.findUnique({
+    where: { id: parseInt(params.id) },
+  });
+  return {
+    title: "Issue Tracker - " + issue?.title,
+    description: "Detail of issue " + issue?.id,
+  };
+}
 
 export default IssueDetailPage;
